@@ -264,10 +264,7 @@ process(){
 
     # Delete exclude domains
     if [ ! -z $EXCLUDE_DOMAIN_FILE ]; then
-        for line in $(cat $EXCLUDE_DOMAIN_FILE)
-        do
-            cat $DOMAIN_TEMP_FILE | grep -vF -f $EXCLUDE_DOMAIN_FILE > $DOMAIN_FILE
-        done
+        cat $DOMAIN_TEMP_FILE | grep -vFx -f $EXCLUDE_DOMAIN_FILE > $DOMAIN_FILE
         printf 'Domains in exclude domain file '$EXCLUDE_DOMAIN_FILE'... ' && _green 'Deleted\n'
     else
         cat $DOMAIN_TEMP_FILE > $DOMAIN_FILE
